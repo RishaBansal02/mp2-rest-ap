@@ -1,4 +1,4 @@
-
+from src import log_requests
 from data_pipeline import (
     create_cleaning_report,
     process_data,
@@ -23,6 +23,7 @@ setup_logging(verbose=True)
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Data Processing API", version="1.0.0")
+app.middleware("http")(log_requests)
 storage = DatasetStorage()
 
 
